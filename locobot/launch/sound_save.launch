@@ -1,0 +1,12 @@
+<launch>
+	<arg name="pkg_name" value="respeaker"/>
+	<arg name="node_name" value="sound_save"/>
+	
+	<group ns = "locobot">
+		<group ns="locobot">
+			<node pkg="$(arg pkg_name)" type="$(arg node_name).py" name="$(arg node_name)"  output="screen">
+				<param name="res" value="locobot" />
+			</node>
+		</group>
+	</group>
+</launch>

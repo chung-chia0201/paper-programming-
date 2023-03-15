@@ -1,0 +1,22 @@
+<launch>
+	<arg name="pkg_name" value="respeaker"/>
+	<arg name="node_name" value="sound_server_client"/>
+	<arg name="IP" doc="Please specify IP"/>
+	<arg name="res" doc="Please specify the server respeaker"/>
+	<arg name="veh" doc="a veh"/>
+
+  <!-- <node pkg="$(arg pkg_name)" type="server_main.py" name="$(arg node_name)"  output="screen">
+		<param name="IP" value="$(arg IP)" />
+	</node> -->
+
+	<group ns = "$(arg veh)">
+		<group ns="$(arg res)">
+			<node pkg="$(arg pkg_name)" type="$(arg node_name).py" name="$(arg node_name)"  output="screen">
+				<param name="IP" value="$(arg IP)" />
+			</node>
+			<!-- <node pkg="$(arg pkg_name)" type="doa_algorithm.py" name="sound_doa"  output="screen"> -->
+			<!-- </node> -->
+		</group>
+	</group>
+
+</launch>
