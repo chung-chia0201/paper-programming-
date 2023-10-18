@@ -9,12 +9,12 @@
 #
 
 import rospy
-from std_msgs.msg import Float32MultiArray
+from std_msgs.msg import String
 
 def callback(data): 
       
     # print the actual message in its raw format 
-    rospy.loginfo("Here's what was subscribed: %s", data.data) 
+    rospy.loginfo("Here's what was subscribed: %s", data) 
       
     # otherwise simply print a convenient message on the terminal 
     print('Data from result_csm received') 
@@ -26,7 +26,8 @@ def main():
     # you may choose to name it however you like, 
     # since you don't have to use it ahead 
     rospy.init_node('compare_result', anonymous=True) 
-    rospy.Subscriber("result_csm", Float32MultiArray, callback) 
+
+    rospy.Subscriber("result_csm", String, callback) 
       
     # spin() simply keeps python from 
     # exiting until this node is stopped 

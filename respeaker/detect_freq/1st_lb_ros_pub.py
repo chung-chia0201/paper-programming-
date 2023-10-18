@@ -11,16 +11,17 @@
 import socket
 import numpy as np
 import rospy
-from std_msgs.msg import Float32MultiArray
+from std_msgs.msg import String
 
 def pub_sound():
-    pub = rospy.Publisher('result_csm', Float32MultiArray, queue_size=10)
+    pub = rospy.Publisher('result_csm', String, queue_size=10)
     r = rospy.Rate(1)
 
     while not rospy.is_shutdown():
         ret=s.recv(1024)
-        print(ret.decode())
-        pub.publish(ret)
+        sound_data=ret.decode() #dtype is str
+        print(sound_data)
+        pub.publish(sound_data)
         r.sleep()
 
 def main():
@@ -30,7 +31,6 @@ def main():
 
 if __name__ == '__main__':
     #　ros init
-    #　rospy.init_node('sound_localize',anonymous=False)
     HOST = '127.0.0.1' #respeaker ip
     PORT = 8001
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
