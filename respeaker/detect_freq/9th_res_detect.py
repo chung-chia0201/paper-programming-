@@ -85,6 +85,8 @@ def main():
                 max_freq_all,listen_spend_time,fft_spend_time=start_detect.freq_compution()     
                 max_freq_all=str(max_freq_all)
                 print("max frequence:",max_freq_all,"listen spend time:",listen_spend_time,"sec ","fft spend time:",fft_spend_time,"sec")
+                max_freq_all=max_freq_all.replace(max_freq_all[-1],"")
+                max_freq_all=max_freq_all.replace(max_freq_all[0],"")
                 conn.send(max_freq_all.encode())
             except Exception:
                 continue
