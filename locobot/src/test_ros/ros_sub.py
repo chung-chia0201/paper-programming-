@@ -26,7 +26,7 @@ def main():
     # you may choose to name it however you like, 
     # since you don't have to use it ahead 
     rospy.init_node('compare_result', anonymous=True) 
-
+    
     rospy.Subscriber("result_csm", String, callback) 
       
     # spin() simply keeps python from 

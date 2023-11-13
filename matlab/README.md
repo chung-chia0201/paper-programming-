@@ -1,2 +1,4 @@
 # Fast Fourier Transform
-matlab toolbox
+toolbox readNPY
+2-radix fft algorithm
+sound make

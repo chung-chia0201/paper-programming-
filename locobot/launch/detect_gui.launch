@@ -1,0 +1,31 @@
+<launch>
+	<arg name="pkg_name" value="locobot"/>
+	<arg name="node_gui" value="lb_compare_gui_3"/>
+	<arg name="node_csm" value="lb_csm"/>
+	<arg name="node_17" value="lb_17"/>
+	<arg name="save_csm" value="save_csm"/>
+	<arg name="save_17" value="save_17"/>
+	
+	<arg name="IP_csm" doc="IP of respeaker csm"/>
+	<arg name="IP_17" doc="IP of respealer no.17"/>
+	
+	<arg name="veh_csm" doc="decision about to respeaker csm start"/>
+	<arg name="veh_17" doc="decision about to respeaker csm start"/>	
+	
+	<param name="veh_csm" value="$(arg veh_csm)"/>
+	<param name="veh_17" value="$(arg veh_17)"/>
+
+  	<node pkg="$(arg pkg_name)" type="$(arg node_gui).py" name="$(arg node_gui)"/>
+  	
+  	<group if="$(eval veh_csm == 1)">
+  		<node pkg="$(arg pkg_name)" type="$(arg save_csm).py" name="$(arg save_csm)"/>
+  		<node pkg="$(arg pkg_name)" type="$(arg node_csm).py" name="$(arg node_csm)"/> 
+  			<param name="IP_csm" value="$(arg IP_csm)"/>			
+  	</group>
+  	<group if="$(eval veh_17 == 1)">
+  		<node pkg="$(arg pkg_name)" type="$(arg save_17).py" name="$(arg save_17)"/>
+  		<node pkg="$(arg pkg_name)" type="$(arg node_17).py" name="$(arg node_17)"/> 
+  			<param name="IP_17" value="$(arg IP_17)"/>			
+  	</group>
+  	
+</launch>
