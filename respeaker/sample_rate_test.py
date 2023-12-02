@@ -14,6 +14,7 @@ import pyaudio
 test_interval=5
 test_sample_rate=[(i+1)*1000 for i in range(test_interval)]
 available_sample_rate=[]
+unavailable_sample_rate=[]
 print("test sample rate: ",test_sample_rate)
 
 nchannels=2
@@ -32,7 +33,10 @@ for sample_rate in test_sample_rate:
             listen_queue[num_mic] = temp_buffer[num_mic::nchannels]
         print("max signal: ", [max(listen_queue[i]) for i in range(num_mics)],"\t sample rate: ",sample_rate)
         stream.stop_stream()
+        stream.close()
+        pyaudio_instance.terminate()
         available_sample_rate.append(sample_rate)
     except:
-        pass
+        unavailable_sample_rate.append(sample_rate)
 print("available sample rate: ",available_sample_rate)
+print("unavailable sample rate: ",unavailable_sample_rate)

@@ -3,5 +3,3 @@ respeaker:
 
 locobot:
     ubuntu 20.04
-
-how to use?
